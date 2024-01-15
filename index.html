@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Macro sizing form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		body {padding:30px;}
+	</style>
+  </head>
+  <body>
+	<h1> Super sizer</h1>
+	<p>This tool is developed to help POs carry out macro sizing independently.<br />
+		It allows you to estimate a workload in story points, and to transpose it into Man days based on a pool of questions. The more precise you are, the more precise the tools will be.<br />
+		The tool does not have the intelligence of a human Scrum master/lead developer, it is only there for informational purposes, and does not commit the development teams in any way.<br />
+		If you want to have a validated sizing, you need to refine topic with team properly.<br />
+		Have fun with all this numbers !</p>
+	<p>-----</p>
+    <form>
+      <div class="form-group row">
+        <label class="col-4 col-form-label">1. Is your project a</label> 
+        <div class="col-8">
+          <div class="custom-controls-stacked">
+            <div class="custom-control custom-radio">
+              <input name="type" id="type_0" type="radio" required="required" class="custom-control-input" value="6"> 
+              <label for="type_0" class="custom-control-label">New product</label>
+            </div>
+          </div>
+          <div class="custom-controls-stacked">
+            <div class="custom-control custom-radio">
+              <input name="type" id="type_1" type="radio" required="required" class="custom-control-input" value="2"> 
+              <label for="type_1" class="custom-control-label">Improvement on an existing product</label>
+            </div>
+          </div>
+          <div class="custom-controls-stacked">
+            <div class="custom-control custom-radio">
+              <input name="type" id="type_2" type="radio" required="required" class="custom-control-input" value="5"> 
+              <label for="type_2" class="custom-control-label">Complete rewamp of a product</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4 col-form-label">2. If need work on an existing product, it is on Legacy code or recent code ?</label> 
+        <div class="col-8">
+          <div class="custom-controls-stacked">
+            <div class="custom-control custom-radio">
+              <input name="legacy" id="legacy_0" type="radio" aria-describedby="legacyHelpBlock" required="required" class="custom-control-input" value="1"> 
+              <label for="legacy_0" class="custom-control-label">Recent code</label>
+            </div>
+          </div>
+          <div class="custom-controls-stacked">
+            <div class="custom-control custom-radio">
+              <input name="legacy" id="legacy_1" type="radio" aria-describedby="legacyHelpBlock" required="required" class="custom-control-input" value="6"> 
+              <label for="legacy_1" class="custom-control-label">Legacy code</label>
+            </div>
+          </div> 
+          <span id="legacyHelpBlock" class="form-text text-muted">If your project is a new product, dont answer this question</span>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4">3. Is your project a Cross-product project ?</label> 
+        <div class="col-8">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="crossProduct" id="crossProduct_1" type="radio" aria-describedby="crossProductHelpBlock" required="required" class="custom-control-input" value="0"> 
+            <label for="crossProduct_1" class="custom-control-label">NO</label>
+          </div> 
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="crossProduct" id="crossProduct_0" type="radio" aria-describedby="crossProductHelpBlock" required="required" class="custom-control-input" value="3"> 
+            <label for="crossProduct_0" class="custom-control-label">YES</label>
+          </div>
+          <span id="crossProductHelpBlock" class="form-text text-muted">For exemple, if your project need a few update on two differents product of the manager, tic yes.</span>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4">4. Is there any specific behaviour for US or it stricly ISO as EU/CA/US ?</label> 
+        <div class="col-8">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="sub" id="sub_0" type="radio" class="custom-control-input" value="0" aria-describedby="subHelpBlock" required="required"> 
+            <label for="sub_0" class="custom-control-label">NO it is ISO</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="sub" id="sub_1" type="radio" class="custom-control-input" value="3" aria-describedby="subHelpBlock" required="required"> 
+            <label for="sub_1" class="custom-control-label">YES it as differences</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="sub" id="sub_2" type="radio" aria-describedby="subHelpBlock" required="required" class="custom-control-input" value="3"> 
+            <label for="sub_2" class="custom-control-label">I dont know yet how it will be available</label>
+          </div> 
+          <span id="subHelpBlock" class="form-text text-muted">If project is first EU/CA then US after, please tic YES</span>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4">5. Is your project a New product on ReactJS stack ?</label> 
+        <div class="col-8">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="reactJS" id="reactJS_0" type="radio" class="custom-control-input" value="1" aria-describedby="reactJSHelpBlock" required="required"> 
+            <label for="reactJS_0" class="custom-control-label">NO</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="reactJS" id="reactJS_1" type="radio" class="custom-control-input" value="1.2" aria-describedby="reactJSHelpBlock" required="required"> 
+            <label for="reactJS_1" class="custom-control-label">YES</label>
+          </div> 
+          <span id="reactJSHelpBlock" class="form-text text-muted">I could involve more effort</span>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4">6. Your project require API usage ?</label> 
+        <div class="col-8">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="api" id="api_1" type="radio" required="required" class="custom-control-input" value="0"> 
+            <label for="api_1" class="custom-control-label">NO</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="api" id="api_0" type="radio" required="required" class="custom-control-input" value="2"> 
+            <label for="api_0" class="custom-control-label">YES</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row dependOnApi">
+        <label class="col-4">6.1 Have the APIs been designed to allow the display of interfaces efficiently (aka frontend have been involved into the build) ?</label> 
+        <div class="col-8">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="designedForFrontend" id="designedForFrontend_1" type="radio" checked="checked" class="custom-control-input" value="3"> 
+            <label for="designedForFrontend_1" class="custom-control-label">NO</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="designedForFrontend" id="designedForFrontend_0" type="radio" class="custom-control-input" value="0"> 
+            <label for="designedForFrontend_0" class="custom-control-label">YES</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row dependOnApi">
+        <label for="numberAPI" class="col-4 col-form-label">6.2 How many API to use ?</label> 
+        <div class="col-8">
+          <select id="numberAPI" name="numberAPI" class="custom-select">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="onboardingEasy" class="col-4 col-form-label">7. How many onboarding your project involve ?</label> 
+        <div class="col-8">
+          <select id="onboardingEasy" name="onboardingEasy" class="custom-select" required="required">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div> 
+	  <div class="form-group row">
+        <label for="listingEasy" class="col-4 col-form-label">8. How many listing your project involve ?</label> 
+        <div class="col-8">
+          <select id="listingEasy" name="listingEasy" class="custom-select" required="required">
+            <option value="0">0</option>
+            <option value="2">1</option>
+            <option value="4">2</option>
+            <option value="6">3</option>
+            <option value="8">4</option>
+            <option value="10">5</option>
+            <option value="12">6</option>
+            <option value="14">7</option>
+            <option value="16">8</option>
+            <option value="18">9</option>
+            <option value="20">10</option>
+          </select>
+        </div>
+      </div> 
+	  <div class="form-group row">
+        <label for="dashboardEasy" class="col-4 col-form-label">9. How many dashboard your project involve ?</label> 
+        <div class="col-8">
+          <select id="dashboardEasy" name="dashboardEasy" class="custom-select" required="required">
+            <option value="0">0</option>
+            <option value="5">1</option>
+            <option value="10">2</option>
+            <option value="15">3</option>
+            <option value="20">4</option>
+            <option value="25">5</option>
+            <option value="30">6</option>
+            <option value="35">7</option>
+            <option value="40">8</option>
+            <option value="45">9</option>
+            <option value="50">10</option>
+          </select>
+        </div>
+      </div> 
+	  <div class="form-group row">
+        <label for="modalesEasy" class="col-4 col-form-label">10. How many modales your project involve ?</label> 
+        <div class="col-8">
+          <select id="modalesEasy" name="modalesEasy" class="custom-select" required="required">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div> 
+	  <div class="form-group row">
+        <label for="smallConfig" class="col-4 col-form-label">11. How many small config page your project involve ?</label> 
+        <div class="col-8">
+          <select id="smallConfig" name="smallConfig" class="custom-select" required="required">
+            <option value="0">0</option>
+            <option value="3">1</option>
+            <option value="6">2</option>
+            <option value="9">3</option>
+            <option value="12">4</option>
+            <option value="15">5</option>
+            <option value="18">6</option>
+            <option value="21">7</option>
+            <option value="24">8</option>
+            <option value="27">9</option>
+            <option value="30">10</option>
+          </select>
+        </div>
+      </div> 
+	  <div class="form-group row">
+        <label for="mediumConfig" class="col-4 col-form-label">12. How many medium config page your project involve ?</label> 
+        <div class="col-8">
+          <select id="mediumConfig" name="mediumConfig" class="custom-select" required="required">
+            <option value="0">0</option>
+            <option value="5">1</option>
+            <option value="10">2</option>
+            <option value="15">3</option>
+            <option value="20">4</option>
+            <option value="25">5</option>
+            <option value="30">6</option>
+            <option value="35">7</option>
+            <option value="40">8</option>
+            <option value="45">9</option>
+            <option value="50">10</option>
+          </select>
+        </div>
+      </div> 
+	  <div class="form-group row">
+        <label for="complexeConfig" class="col-4 col-form-label">13. How many complexe config page your project involve ?</label> 
+        <div class="col-8">
+          <select id="complexeConfig" name="complexeConfig" class="custom-select" required="required">
+            <option value="0">0</option>
+            <option value="10">1</option>
+            <option value="20">2</option>
+            <option value="30">3</option>
+            <option value="40">4</option>
+            <option value="50">5</option>
+            <option value="60">6</option>
+            <option value="70">7</option>
+            <option value="80">8</option>
+            <option value="90">9</option>
+            <option value="100">10</option>
+          </select>
+        </div>
+      </div> 
+	  <div class="form-group row">
+        <label class="col-4">14. Refering the knowledge you have about it, what kind of project it is ?</label> 
+        <div class="col-8">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="kind" id="kind_0" type="radio" required="required" class="custom-control-input" value="1.1"> 
+            <label for="kind_0" class="custom-control-label">Simple (less than a month)</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input name="kind" id="kind_1" type="radio" required="required" class="custom-control-input" value="1.25"> 
+            <label for="kind_1" class="custom-control-label">Normal (arround a quarter)</label>
+          </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+            <input name="kind" id="kind_2" type="radio" required="required" class="custom-control-input" value="1.5"> 
+            <label for="kind_2" class="custom-control-label">Complexe (more than a quarter)</label>
+          </div>
+        </div>
+      </div>
+	  <div class="form-group row">
+		<label class="col-4">15. Who will handle your project ?</label> 
+		<div class="col-8">
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_17" type="radio" required="required" class="custom-control-input" value="1.9"> 
+			<label for="who_17" class="custom-control-label">I don't know</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_0" type="radio" class="custom-control-input" value="1.2" required="required"> 
+			<label for="who_0" class="custom-control-label">Anoop</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_1" type="radio" class="custom-control-input" value="1.4" required="required"> 
+			<label for="who_1" class="custom-control-label">Sachin</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_2" type="radio" class="custom-control-input" value="1.5" required="required"> 
+			<label for="who_2" class="custom-control-label">Yann</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_3" type="radio" required="required" class="custom-control-input" value="1.3"> 
+			<label for="who_3" class="custom-control-label">Guillaume</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_4" type="radio" required="required" class="custom-control-input" value="1.3"> 
+			<label for="who_4" class="custom-control-label">David</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_5" type="radio" required="required" class="custom-control-input" value="1.3"> 
+			<label for="who_5" class="custom-control-label">Jacques</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_6" type="radio" required="required" class="custom-control-input" value="1.3"> 
+			<label for="who_6" class="custom-control-label">Quentin</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_7" type="radio" required="required" class="custom-control-input" value="1.5"> 
+			<label for="who_7" class="custom-control-label">Bruno</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_8" type="radio" required="required" class="custom-control-input" value="1.5"> 
+			<label for="who_8" class="custom-control-label">Amandine</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_9" type="radio" required="required" class="custom-control-input" value="1.5"> 
+			<label for="who_9" class="custom-control-label">Antony</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_10" type="radio" required="required" class="custom-control-input" value="1.8"> 
+			<label for="who_10" class="custom-control-label">Baptiste</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_11" type="radio" required="required" class="custom-control-input" value="1.7"> 
+			<label for="who_11" class="custom-control-label">Benjamin</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_12" type="radio" required="required" class="custom-control-input" value="1.3"> 
+			<label for="who_12" class="custom-control-label">Alex</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_13" type="radio" required="required" class="custom-control-input" value="1.4"> 
+			<label for="who_13" class="custom-control-label">Lionel</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_14" type="radio" required="required" class="custom-control-input" value="1.4"> 
+			<label for="who_14" class="custom-control-label">Nicolas</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_15" type="radio" required="required" class="custom-control-input" value="1.6"> 
+			<label for="who_15" class="custom-control-label">Vincent</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+			<input name="who" id="who_16" type="radio" required="required" class="custom-control-input" value="1.8"> 
+			<label for="who_16" class="custom-control-label">Steeve</label>
+		  </div>
+		</div>
+	  </div>
+      <div class="form-group row">
+        <div class="offset-4 col-8">
+          <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+	  <div class="form-group row">
+        <div class="offset-4 col-8">
+          <p id="resultSp"><p>
+		  <p id="resultMd"><p>
+        </div>
+      </div>
+    </form>
+  </body>
+  <script>
+
+	addEventListener("load", (event) => {
+	document.querySelector('form').reset();
+	let x = document.getElementsByClassName("dependOnApi");
+		for (let i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+		}
+	});
+
+	document.getElementById("api_0").addEventListener(
+	  "click",
+	  function () {
+		let x = document.getElementsByClassName("dependOnApi");
+		for (let i = 0; i < x.length; i++) {
+			x[i].style.display = " flex";
+		}
+	  },
+	);
+	
+	document.getElementById("api_1").addEventListener(
+	  "click",
+	  function () {
+		let x = document.getElementsByClassName("dependOnApi");
+		for (let i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+		}
+	  },
+	);
+	
+	const form = document.querySelector('form');
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+		
+		const answerValue = ['numberAPI', 'onboardingEasy', 'listingEasy','dashboardEasy', 'modalesEasy', 'smallConfig','mediumConfig', 'complexeConfig'];
+		const answerChecked = ['type', 'legacy', 'crossProduct','sub', 'reactJS', 'api','designedForFrontend', 'kind', 'who'];
+		let MyAnswerValue =[];
+		let MyAnswerChecked =[];
+		
+		answerValue.forEach((element) => {
+		let baliseElement = document.getElementById(element)
+		MyElement = new Object();
+		MyElement.name = element;	
+		MyElement.value = Number(baliseElement.value)
+		MyAnswerValue.push(MyElement);
+		});
+		
+		answerChecked.forEach((element) => {		
+		let baliseElement = document.querySelectorAll('input[name="'+element+'"]')
+		MyElement = new Object();
+		MyElement.name = element;
+		for (let i = 0; i < baliseElement.length; i++) {
+			if (baliseElement[i].checked) {
+				MyElement.value = Number(baliseElement[i].value)
+				MyAnswerChecked.push(MyElement);
+				break
+			}
+		}});
+		
+		totalSp = (((MyAnswerChecked[0].value + MyAnswerChecked[1].value + MyAnswerChecked[2].value + MyAnswerChecked[3].value + MyAnswerChecked[5].value + MyAnswerChecked[6].value + MyAnswerValue[0].value + MyAnswerValue[1].value + MyAnswerValue[2].value + MyAnswerValue[3].value + MyAnswerValue[4].value + MyAnswerValue[5].value + MyAnswerValue[6].value + MyAnswerValue[7].value)*MyAnswerChecked[7].value)*MyAnswerChecked[4].value).toFixed(0);
+		totalMd = (totalSp * MyAnswerChecked[8].value * MyAnswerChecked[7].value).toFixed(0);
+		
+		//totalSP is a sumup of all questions related to the project + un malus if ReactJS as we still have a lot of ODS problems.
+		//totalMD try to transform the SP value into MD according to the complexity of the project and the DEV in charge.
+		
+		document.getElementById('resultSp').textContent = "Your macro sizing is arround "+ totalSp +" SP.";
+		document.getElementById('resultMd').textContent = "Your macro sizing is arround "+ totalMd +" MD.";
+	});
+  </script>
+</html>
